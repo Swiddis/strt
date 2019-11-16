@@ -130,13 +130,13 @@ function terminal() {
             alert("[category] expand/collapse category\n[category][tag] go to site\n/[search] search ecosia\n=[search] search wolframalpha\n,[site] go to site\n+[category] [tag] [name] [url] add site\n-[category][tag] remove site\n$ show info\n* reset to default");
             break;
         case "/":
-            window.open("https://www.ecosia.org/search?q=" + encodeURIComponent(arg));
+            window.location.assign("https://www.ecosia.org/search?q=" + encodeURIComponent(arg));
             break;
         case "=":
-            window.open("https://www.wolframalpha.com/input/?i=" + encodeURIComponent(arg));
+            window.location.assign("https://www.wolframalpha.com/input/?i=" + encodeURIComponent(arg));
             break;
         case ",":
-            window.open("http://" + arg);
+            window.location.assign("http://" + arg);
             break;
         case "+":
             var l = cats.length;
@@ -211,7 +211,7 @@ function terminal() {
                 for (i = 0; i < catsts[indx].length; i++) {
                     if (catsts[indx][i][0] == arg[0]) {
                         console.log(catsts[indx][i][2]);
-                        window.open(catsts[indx][i][2] + encodeURIComponent(args.splice(1, args.length - 1).join(" ")));
+                        window.location.assign(catsts[indx][i][2] + encodeURIComponent(args.splice(1, args.length - 1).join(" ")));
                         break;
                     }
                 }
