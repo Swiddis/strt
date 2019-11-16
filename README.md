@@ -5,7 +5,7 @@ The listed sites can be navigated by clicking on the menu letters and expanding 
 
 The input form is in the top left, and the commands are as follows.
 
-```? - Pops up a help dialogue.
+? - Pops up a help dialogue.
 
 [category] - Expands/collapses the category with that name. Does nothing of the category doesn't exist. Example on the default site list is 'm'.
 
@@ -23,7 +23,7 @@ The input form is in the top left, and the commands are as follows.
 
 $ - Show extra info, such as the time and system information. platform.js was taken from the source code for weboas.is, I couldn't find a license so as long as nobody complains I'll keep it here. Will not work if it's the first thing entered because of how the input is set up, working on a fix.
 
-* - Reset site list to default.```
+* - Reset site list to default.
 
 Made with love.
 
