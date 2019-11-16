@@ -1,4 +1,4 @@
-const defaultsites = "d s stackexchange https://stackexchange.com/,m r reddit https://www.reddit.com/,m t twitter https://twitter.com/home,w w wikipedia https://www.wikipedia.org/,e w w3schools https://www.w3schools.com/";
+const defaultsites = "d s stackexchange https://stackexchange.com/search?q=,m r reddit https://www.reddit.com/,m t twitter https://twitter.com/home,w w wikipedia https://en.wikipedia.org/wiki/,e w w3schools https://www.w3schools.com/";
 
 var sites = localStorage.getItem("strtsites") === null ? defaultsites : localStorage.getItem("strtsites");
 
@@ -207,15 +207,15 @@ function terminal() {
             }
             var indx = cats.indexOf(cmd);
             if (indx > -1) {
+                args = arg.split(" ");
                 for (i = 0; i < catsts[indx].length; i++) {
-                    if (catsts[indx][i][0] == arg) {
+                    if (catsts[indx][i][0] == arg[0]) {
                         console.log(catsts[indx][i][2]);
-                        window.open(catsts[indx][i][2]);
+                        window.open(catsts[indx][i][2] + encodeURIComponent(args.splice(1, args.length - 1).join(" ")));
                         break;
                     }
                 }
             }
-
     }
     return null;
 }
