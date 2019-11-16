@@ -176,7 +176,7 @@ function terminal() {
                 catsts.splice(indx, 1);
             } else {
                 for (i = 0; i < catsts[indx].length; i++) {
-                    if (catsts[indx][i][0] == arg.charAt(1)) {
+                    if (catsts[indx][i][0] == arg.substr(1)) {
                         catsts[indx].splice(i, 1);
                         break;
                     }
