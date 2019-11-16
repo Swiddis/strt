@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="platform.js"></script>
+    <script src="scripts.js"></script>
+    <title>strt</title>
+</head>
+
+<body scroll="no" style="overflow:hidden;">
+    <div>
+        <div style="height:15vh;float:left;">
+            <p style="color:#93a1a1;">></p>
+            <form action="#" onsubmit="terminal()" method="get" on>
+                <input type="text" id="trmnl" name="q" autocomplete="off" autofocus />
+            </form>
+            <script>
+                setInterval(trmnlFocus, 50)
+            </script>
+        </div>
+        <div style="height:15vh;">
+            <p id="clock" align="right" style="margin-bottom:1em;cursor:default;display:none;"></p>
+            <p id="sysinfo" align="right" style="cursor:default;display:none;"></p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-end" style="height:15vh;">
+        <br>
+        <p style="white-space:pre;line-height:16px;cursor:default;">
+     _        _   
+ ___| |_ _ __| |_ 
+/ __| __| '__| __|
+\__ \ |_| |  | |_ 
+|___/\__|_|   \__|
+
+</p><br>
+    </div>
+    <div style="height:70vh;" class="d-flex justify-content-center align-items-start">
+        <div style="width:15ch;"></div>
+        <div id="catmenu" class="catholder"></div>
+        <script>
+            menuBuilder(true, false)
+        </script>
+    </div>
+</body>
+
+</html>
