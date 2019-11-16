@@ -1,0 +1,2 @@
+# strt
+A simple startpage.
