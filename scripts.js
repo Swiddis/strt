@@ -1,10 +1,10 @@
 const defaultsites = "d s stackexchange https://stackexchange.com/search?q=,m r reddit https://www.reddit.com/,m t twitter https://twitter.com/home,w w wikipedia https://en.wikipedia.org/wiki/,e w w3schools https://www.w3schools.com/";
 
-var sites = localStorage.getItem("strtsites") === null ? defaultsites : localStorage.getItem("strtsites");
+var sites = localStorage.getItem("strtsitesb") === null ? defaultsites : localStorage.getItem("strtsitesb");
 
 var cats, catsts, tint;
 
-var rcols = [];
+var rcols = [], colors = [];
 
 /*Update/format the time*/
 function clockUpdate() {
@@ -35,7 +35,9 @@ function rancol(ids) {
     var mcolors = ["#b58900", "#cb4b16", "#dc322f", "#d33682",
                    "#6c71c4", "#268bd2", "#2aa198", "#859900"
     ];
-    var colors = mcolors.slice();
+    if (colors.length == 0) {
+        colors = mcolors.slice();
+    }
     var color;
     for (i = 0; i < ids.length; i++) {
         color = colors[Math.floor(Math.random() * colors.length)];
@@ -63,7 +65,7 @@ function saveSites() {
             }
         }
     }
-    localStorage.setItem("strtsites", saveList);
+    localStorage.setItem("strtsitesb", saveList);
 }
 
 /*Format a menu containing all the sites of a category as hyperlinks*/
@@ -151,21 +153,22 @@ function terminal() {
             var indx = cats.indexOf(args[0]);
             if (indx < 0) {
                 cats.push(args[0]);
-                catsts.push([]);
+                catsts.push([[args[1], args[2], "http://" + args[3]]]);
             }
+            indx = cats.indexOf(args[0]);
             for (i = 0; i < catsts[indx].length; i++) {
                 if (catsts[indx][i][0] == args[1]) {
                     catsts[indx][i] = [args[1], args[2], "http://" + args[3]];
                     break;
                 } else if (i == catsts[indx].length - 1) {
                     catsts[indx].push([args[1], args[2], "http://" + args[3]]);
-                    console.log(catsts[indx]);
                 }
             }
             menuBuilder(false, false);
             if (l < cats.length) {
-                rancol([arg.charAt(0)]);
-            } else {
+                rancol([args[0]]);
+            }
+            else {
                 rancol([]);
             }
             break;
@@ -183,7 +186,7 @@ function terminal() {
                 }
             }
             menuBuilder(false, false);
-            rancol([])
+            rancol([]);
             break;
         case "*":
             menuBuilder(true, true);
