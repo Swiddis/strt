@@ -1,6 +1,6 @@
 const defaultsites = "d s stackexchange https://stackexchange.com/search?q=,m r reddit https://www.reddit.com/,m t twitter https://twitter.com/home,w w wikipedia https://en.wikipedia.org/wiki/,e w w3schools https://www.w3schools.com/";
 
-var sites = localStorage.getItem("strtsitesb") === null ? defaultsites : localStorage.getItem("strtsitesb");
+var sites = localStorage.getItem("strtsites") === null ? defaultsites : localStorage.getItem("strtsites");
 
 var cats, catsts, tint;
 
@@ -65,7 +65,7 @@ function saveSites() {
             }
         }
     }
-    localStorage.setItem("strtsitesb", saveList);
+    localStorage.setItem("strtsites", saveList);
 }
 
 /*Format a menu containing all the sites of a category as hyperlinks*/
