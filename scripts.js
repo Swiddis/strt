@@ -1,5 +1,5 @@
 const defaultsites = "d s stackexchange https://stackexchange.com/search?q=,m r reddit https://www.reddit.com/,m t twitter https://twitter.com/home,w w wikipedia https://en.wikipedia.org/wiki/,e w w3schools https://www.w3schools.com/";
-siteFile = "strtsites"
+siteFile = "strtsites";
 
 var sites = localStorage.getItem(siteFile) === null ? defaultsites : localStorage.getItem(siteFile);
 
