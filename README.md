@@ -21,7 +21,7 @@ The input form is in the top left, and the commands are as follows.
 
 -[category][tag] - Remove the given tag from the given category. Can also remove a whole category with -[category].
 
-$ - Show extra info, such as the time and system information. platform.js was taken from the source code for weboas.is, I couldn't find a license so as long as nobody complains I'll keep it here. Will not work if it's the first thing entered because of how the input is set up, working on a fix.
+$ - Show extra info, such as the time and system information. platform.js was taken from the source code for weboas.is, I couldn't find a license so as long as nobody complains I'll keep it here.
 
 \* - Reset site list to default.
 
