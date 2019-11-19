@@ -1,8 +1,9 @@
 const defaultsites = "d s stackexchange https://stackexchange.com/search?q=,m r reddit https://www.reddit.com/,m t twitter https://twitter.com/home,w w wikipedia https://en.wikipedia.org/wiki/,e w w3schools https://www.w3schools.com/";
+siteFile = "strtsites";
 
-var sites = localStorage.getItem("strtsitesb") === null ? defaultsites : localStorage.getItem("strtsitesb");
+var sites = localStorage.getItem(siteFile) === null ? defaultsites : localStorage.getItem(siteFile);
 
-var cats, catsts, tint;
+var cats, catsts, tint, hold=false;
 
 var rcols = [], colors = [];
 
@@ -65,12 +66,12 @@ function saveSites() {
             }
         }
     }
-    localStorage.setItem("strtsitesb", saveList);
+    localStorage.setItem(siteFile, saveList);
 }
 
 /*Format a menu containing all the sites of a category as hyperlinks*/
 function catMenu(category, items) {
-    var menu = "<div id=\"" + category + "\" class=\"cat\"><p onclick=\"reveal(this.parentNode.id);\">" + category + "</p><div id=\"" + category + "m\" style=\"display:none;\">";
+    var menu = "<div id=\"" + category + "\" class=\"cat\" onmouseover=\"reveal(this.id);\" onclick=\"hold=!hold;\" onmouseout=\"if(!hold)hide(this.id);hold=false;\"><p>" + category + "</p><div id=\"" + category + "m\" style=\"display:none;\">";
     for (j = 0; j < items.length; j++) {
         menu += "<a href=\"" + items[j][2] + "\">" + items[j][0] + "-" + items[j][1] + "</a><br>";
     }
@@ -108,13 +109,18 @@ function menuBuilder(load, first) {
     }
 }
 
-/*Reveal a hidden category menu*/
+/*Toggling a hidden category menu*/
 function reveal(id) {
-    if ($("#" + id + "m").css("display") == "none") {
-        $("#" + id + "m").css("display", "block");
-    } else {
-        $("#" + id + "m").css("display", "none");
+    if ($("#" + id + "m").css("display") == "block") {
+        hold = true;
     }
+    else {
+        $("#" + id + "m").css("display", "block");
+    }
+    return null;
+}
+function hide(id) {
+    $("#" + id + "m").css("display", "none");
     return null;
 }
 
@@ -206,7 +212,12 @@ function terminal() {
             break;
         default:
             if (arg.length == 0) {
-                reveal(cmd);
+                if ($("#" + cmd + "m").css("display") == "none") {
+                    reveal(cmd);
+                }
+                else {
+                    hide(cmd);
+                }
             }
             var indx = cats.indexOf(cmd);
             if (indx > -1) {
