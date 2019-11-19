@@ -17,9 +17,7 @@
     <div>
         <div style="height:15vh;float:left;">
             <p style="color:#93a1a1;">></p>
-            <form action="#" onsubmit="terminal()" method="get" target="nonRedirectTarg">
-                <input type="text" id="trmnl" name="q" autocomplete="off" autofocus />
-            </form>
+            <input type="text" id="trmnl" onkeypress="if(event.keyCode==13)terminal(event);" name="q" autocomplete="off" autofocus />
             <script>
                 setInterval(trmnlFocus, 50)
             </script>
@@ -47,7 +45,6 @@
             menuBuilder(true, false)
         </script>
     </div>
-    <iframe name="nonRedirectTarg" style="display: none;"></iframe>
 </body>
 
 </html>

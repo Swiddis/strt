@@ -124,8 +124,19 @@ function hide(id) {
     return null;
 }
 
+/*Open link in new tab or new window*/
+function loadSite(link, newWindow) {
+    if (newWindow) {
+        window.open(link);
+    }
+    else {
+        window.location.assign(link);
+    }
+}
+
 /*Handling input for the terminal*/
-function terminal() {
+function terminal(event) {
+    var skey = event.shiftKey;
     var input = document.getElementById("trmnl").value;
     document.getElementById("trmnl").value = "";
     if (input == "") {
@@ -138,13 +149,13 @@ function terminal() {
             alert("[category] expand/collapse category\n[category][tag] go to site\n/[search] search ecosia\n=[search] search wolframalpha\n,[site] go to site\n+[category] [tag] [name] [url] add site\n-[category][tag] remove site\n$ show info\n* reset to default");
             break;
         case "/":
-            window.location.assign("https://www.ecosia.org/search?q=" + encodeURIComponent(arg));
+            loadSite("https://www.ecosia.org/search?q=" + encodeURIComponent(arg), skey);
             break;
         case "=":
-            window.location.assign("https://www.wolframalpha.com/input/?i=" + encodeURIComponent(arg));
+            loadSite("https://www.wolframalpha.com/input/?i=" + encodeURIComponent(arg), skey);
             break;
         case ",":
-            window.location.assign("http://" + arg);
+            loadSite("http://" + arg, skey);
             break;
         case "+":
             var l = cats.length;
@@ -225,7 +236,7 @@ function terminal() {
                 for (i = 0; i < catsts[indx].length; i++) {
                     if (catsts[indx][i][0] == arg[0]) {
                         console.log(catsts[indx][i][2]);
-                        window.location.assign(catsts[indx][i][2] + encodeURIComponent(args.splice(1, args.length - 1).join(" ")));
+                        loadSite(catsts[indx][i][2] + encodeURIComponent(args.splice(1, args.length - 1).join(" ")), skey);
                         break;
                     }
                 }
