@@ -1,5 +1,6 @@
-const defaultsites = "d s stackexchange https://stackexchange.com/search?q=,m r reddit https://www.reddit.com/,m t twitter https://twitter.com/home,w w wikipedia https://en.wikipedia.org/wiki/,e w w3schools https://www.w3schools.com/";
-siteFile = "strtsites";
+const defaultsites = "d s stackexchange https://stackexchange.com/ https://stackexchange.com/search?q=,m r reddit https://www.reddit.com/ https://www.reddit.com/search/?q=,m t twitter https://twitter.com/home https://twitter.com/search?q=,w w wikipedia https://www.wikipedia.org/ https://en.wikipedia.org/wiki/,e w w3schools https://www.w3schools.com/";
+const searchengine = "https://www.ecosia.org/search?q=";
+const siteFile = "strtsites";
 
 var sites = localStorage.getItem(siteFile) === null ? defaultsites : localStorage.getItem(siteFile);
 
@@ -61,6 +62,9 @@ function saveSites() {
     for (i = 0; i < cats.length; i++) {
         for (j = 0; j < catsts[i].length; j++) {
             saveList += cats[i] + " " + catsts[i][j][0] + " " + catsts[i][j][1] + " " + catsts[i][j][2];
+            if (catsts[i][j].length == 4) {
+                saveList += " " + catsts[i][j][3];
+            }
             if (i != cats.length - 1 || j != catsts[i].length - 1) {
                 saveList += ",";
             }
@@ -92,10 +96,10 @@ function menuBuilder(load, first) {
         for (i = 0; i < sts.length; i++) {
             st = sts[i].split(" ");
             if (cats.indexOf(st[0]) > -1) {
-                catsts[cats.indexOf(st[0])].push(st.slice(1, 4));
+                catsts[cats.indexOf(st[0])].push(st.slice(1, st.length + 1));
             } else {
                 cats.push(st[0]);
-                catsts.push([st.slice(1, 4)]);
+                catsts.push([st.slice(1, st.length + 1)]);
             }
         }
     }
@@ -149,7 +153,7 @@ function terminal(event) {
             alert("[category] expand/collapse category\n[category][tag] go to site\n/[search] search ecosia\n=[search] search wolframalpha\n,[site] go to site\n+[category] [tag] [name] [url] add site\n-[category][tag] remove site\n$ show info\n* reset to default");
             break;
         case "/":
-            loadSite("https://www.ecosia.org/search?q=" + encodeURIComponent(arg), skey);
+            loadSite(searchengine + encodeURIComponent(arg), skey);
             break;
         case "=":
             loadSite("https://www.wolframalpha.com/input/?i=" + encodeURIComponent(arg), skey);
@@ -170,15 +174,27 @@ function terminal(event) {
             var indx = cats.indexOf(args[0]);
             if (indx < 0) {
                 cats.push(args[0]);
-                catsts.push([[args[1], args[2], "http://" + args[3]]]);
+                catsts.push([[args[1]]]);
             }
             indx = cats.indexOf(args[0]);
             for (i = 0; i < catsts[indx].length; i++) {
+                var inclHttp1 = args[3].slice(0, 4) == "http" ? "" : "http://";
+                var inclHttp2 = (args.length == 5 && args[4].slice(0, 4) == "http") ? "" : "http://";
                 if (catsts[indx][i][0] == args[1]) {
-                    catsts[indx][i] = [args[1], args[2], "http://" + args[3]];
+                    if (args.length == 5) {
+                        catsts[indx][i] = [args[1], args[2], inclHttp1 + args[3], inclHttp2 + args[4]];
+                    }
+                    else {
+                        catsts[indx][i] = [args[1], args[2], inclHttp1 + args[3]];
+                    }
                     break;
                 } else if (i == catsts[indx].length - 1) {
-                    catsts[indx].push([args[1], args[2], "http://" + args[3]]);
+                    if (args.length == 5) {
+                        catsts[indx].push([args[1], args[2], inclHttp1 + args[3], inclHttp2 + args[4]]);
+                    }
+                    else {
+                        catsts[indx].push([args[1], args[2], inclHttp1 + args[3]]);
+                    }
                 }
             }
             menuBuilder(false, false);
@@ -235,8 +251,15 @@ function terminal(event) {
                 args = arg.split(" ");
                 for (i = 0; i < catsts[indx].length; i++) {
                     if (catsts[indx][i][0] == arg[0]) {
-                        console.log(catsts[indx][i][2]);
-                        loadSite(catsts[indx][i][2] + encodeURIComponent(args.splice(1, args.length - 1).join(" ")), skey);
+                        if (args.length == 1) {
+                            loadSite(catsts[indx][i][2], skey);
+                        }
+                        else if (catsts[indx][i].length == 4) {
+                            loadSite(catsts[indx][i][3] + encodeURIComponent(args.splice(1, args.length - 1).join(" ")), skey);
+                        }
+                        else {
+                            loadSite(searchengine + encodeURIComponent(args.splice(1, args.length - 1).join(" ") + " site:" + catsts[indx][i][2]), skey);
+                        }
                         break;
                     }
                 }
