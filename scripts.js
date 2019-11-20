@@ -4,7 +4,7 @@ const siteFile = "strtsites";
 
 var sites = localStorage.getItem(siteFile) === null ? defaultsites : localStorage.getItem(siteFile);
 
-var cats, catsts, tint, hold=false;
+var cats, catsts, tint, sitesbackup, hold=false;
 
 var rcols = [], colors = [];
 
@@ -58,6 +58,7 @@ function rancol(ids) {
 
 /*Save modified site lists*/
 function saveSites() {
+    sitesbackup = sites;
     var saveList = "";
     for (i = 0; i < cats.length; i++) {
         for (j = 0; j < catsts[i].length; j++) {
@@ -237,6 +238,9 @@ function terminal(event) {
                 clearInterval(tint);
             }
             break;
+        case "<":
+            sites = sitesbackup;
+            menuBuilder(true, false);
         default:
             if (arg.length == 0) {
                 if ($("#" + cmd + "m").css("display") == "none") {
