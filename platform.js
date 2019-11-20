@@ -1,3 +1,13 @@
+/*
+Taken from Weboas.is which uses the MPL 2.0 license.
+"This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/."
+
+I'm 99% sure I'm allowed to use this code as long as I keep this license notice here.
+In any case, thanks!
+*/
+
 (function() {
     "use strict";
 
