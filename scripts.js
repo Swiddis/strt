@@ -165,7 +165,7 @@ function terminal(event) {
             loadSite("https://www.wolframalpha.com/input/?i=" + encodeURIComponent(arg), skey);
             break;
         case ",":
-            loadSite("http://" + arg, skey);
+            loadSite(arg.slice(0,4) == "http" ? arg : "http://" + arg, skey);
             break;
         case "+":
             var l = cats.length;
