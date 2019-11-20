@@ -66,11 +66,10 @@ function saveSites() {
             if (catsts[i][j].length == 4) {
                 saveList += " " + catsts[i][j][3];
             }
-            if (i != cats.length - 1 || j != catsts[i].length - 1) {
-                saveList += ",";
-            }
+            saveList += ",";
         }
     }
+    saveList = saveList.substr(0, saveList.length - 1);
     localStorage.setItem(siteFile, saveList);
 }
 
@@ -176,13 +175,19 @@ function terminal(event) {
                 rancol([arg]);
                 break;
             }
+            else if (arg.length == 1) {
+                break;
+            }
             var args = arg.split(" ");
             var indx = cats.indexOf(args[0]);
             if (indx < 0) {
                 cats.push(args[0]);
-                catsts.push([[args[1]]]);
+                catsts.push([]);
+                indx = cats.indexOf(args[0]);
             }
-            indx = cats.indexOf(args[0]);
+            if (catsts[indx].length == 0) {
+                catsts[indx] = [[args[1]]];
+            }
             for (i = 0; i < catsts[indx].length; i++) {
                 var inclHttp1 = args[3].slice(0, 4) == "http" ? "" : "http://";
                 var inclHttp2 = (args.length == 5 && args[4].slice(0, 4) == "http") ? "" : "http://";
