@@ -151,7 +151,12 @@ function terminal(event) {
     var arg = input.substr(1);
     switch (cmd) {
         case "?":
-            alert("[category] expand/collapse category\n[category][tag] go to site\n/[search] search ecosia\n=[search] search wolframalpha\n,[site] go to site\n+[category] [tag] [name] [url] add site\n-[category][tag] remove site\n$ show info\n* reset to default");
+            if ($("#helpmenu").css("display") == "none") {
+                $("#helpmenu").css("display", "block");
+            }
+            else {
+                $("#helpmenu").css("display", "none");
+            }
             break;
         case "/":
             loadSite(searchengine + encodeURIComponent(arg), skey);
