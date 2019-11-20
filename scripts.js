@@ -37,6 +37,7 @@ function rancol(ids) {
     var mcolors = ["#b58900", "#cb4b16", "#dc322f", "#d33682",
                    "#6c71c4", "#268bd2", "#2aa198", "#859900"
     ];
+    console.log(ids);
     if (colors.length == 0) {
         colors = mcolors.slice();
     }
@@ -176,13 +177,19 @@ function terminal(event) {
                 rancol([arg]);
                 break;
             }
+            else if (arg.length == 1) {
+                break;
+            }
             var args = arg.split(" ");
             var indx = cats.indexOf(args[0]);
             if (indx < 0) {
                 cats.push(args[0]);
-                catsts.push([[args[1]]]);
+                catsts.push([]);
+                indx = cats.indexOf(args[0]);
             }
-            indx = cats.indexOf(args[0]);
+            if (catsts[indx].length == 0) {
+                catsts[indx] = [[args[1]]];
+            }
             for (i = 0; i < catsts[indx].length; i++) {
                 var inclHttp1 = args[3].slice(0, 4) == "http" ? "" : "http://";
                 var inclHttp2 = (args.length == 5 && args[4].slice(0, 4) == "http") ? "" : "http://";

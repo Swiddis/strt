@@ -17,7 +17,7 @@ The input form is in the top left, and the commands are as follows.
 
 ,[site] - Go to the given site.
 
-+[category] [tag] [name] [url] - Adds the given site. Category is the menu it will fall under (will automatically make a new category if one does not exist, you can also just do +[category]), tag is what will help navigate to the site under the category, the name will go next to the tag in the dropdown (not recommended more than 14 characters), and the url is the url to the site. An example is +m y youtube youtube.com
++[category] [tag] [name] [url] - Adds the given site. Category is the menu it will fall under (will automatically make a new category if one does not exist, you can also just do +[category]), tag is what will help navigate to the site under the category, the name will go next to the tag in the dropdown (not recommended more than 14 characters), and the url is the url to the site. An example is +m y youtube youtube.com. Can also add an empty category with +[category].
 
 -[category][tag] - Remove the given tag from the given category. Can also remove a whole category with -[category].
 
