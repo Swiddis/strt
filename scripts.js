@@ -37,7 +37,6 @@ function rancol(ids) {
     var mcolors = ["#b58900", "#cb4b16", "#dc322f", "#d33682",
                    "#6c71c4", "#268bd2", "#2aa198", "#859900"
     ];
-    console.log(ids);
     if (colors.length == 0) {
         colors = mcolors.slice();
     }
@@ -67,11 +66,10 @@ function saveSites() {
             if (catsts[i][j].length == 4) {
                 saveList += " " + catsts[i][j][3];
             }
-            if (i != cats.length - 1 || j != catsts[i].length - 1) {
-                saveList += ",";
-            }
+            saveList += ",";
         }
     }
+    saveList = saveList.substr(0, saveList.length - 1);
     localStorage.setItem(siteFile, saveList);
 }
 
