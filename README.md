@@ -1,5 +1,5 @@
 # strt
-A simple startpage, available at https://swiddiszwei.github.io/strt/
+A simple startpage, currently inactive.
 
 The listed sites can be navigated by clicking on the menu letters and expanding them, but it's designed to be keyboard-controlled.
 
