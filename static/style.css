@@ -1,0 +1,40 @@
+:root {
+  --color-bg: #1d2021;
+  --color-fg: #d4be98;
+  --color-link: #7daea3;
+  --color-link-hover: #e78a4e;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url('berries.webp');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+main {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: "Fira Code";
+
+  border-radius: 20px;
+}
+
+p {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 50px;
+}
