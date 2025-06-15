@@ -62,8 +62,8 @@ article {
 
 h1, h2 {
   font-weight: bold;
-  margin: 0;
   text-align: center;
+  margin: 0;
 }
 
 h1 {
@@ -72,10 +72,29 @@ h1 {
 
 h2 {
   font-size: 1.414rem;
+  margin-bottom: 0.75rem;
 }
 
 p {
   font-size: 1.189rem;
   margin: 0;
   font-weight: 500;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+a:link, a:visited {
+  font-size: 1.189rem;
+  margin: 0;
+  font-weight: 500;
+  
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+a:hover {
+  color: var(--color-link-hover);
 }
