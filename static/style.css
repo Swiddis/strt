@@ -18,7 +18,8 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-image: url('berries.webp');
+  background-image: url('berries.jpg');
+  background-color: #352e26; /* Anti-flashbang */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -30,7 +31,7 @@ main {
   justify-content: center;
   align-items: center;
 
-  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-family: "Fira Code", "Courier New", Courier, monospace;
 }
 
 article {
