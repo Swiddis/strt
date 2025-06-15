@@ -9,26 +9,45 @@
   </head>
   <body>
     <main>
-      <article>
-        <h1 id="greeting"></h1>
+      <article id="greeting">
+        <h1 id="greeting-content"></h1>
+      </article>
+      <!-- TODO -->
+      <!--
+        <article id="tasks">
+            <h2>Tasks</h2>
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="first"></td>
+                    <td><label><p>This is a more realistic, longer task name</p></label></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="second"></td>
+                    <td><label><p>Hello!</p></label></td>
+                </tr>
+            </table>
+        </article>
+      -->
+      <article id="bookmarks">
+        <h2>Bookmarks</h2>
       </article>
     </main>
   </body>
 
   <script>
     const hour = new Date().getHours();
-    
+
     let greeting;
     if (hour <= 4) {
-        greeting = "Schlafen gehen!";
+      greeting = "Schlafen gehen!";
     } else if (hour <= 11) {
-        greeting = "Guten Morgen";
+      greeting = "Guten Morgen";
     } else if (hour <= 18) {
-        greeting = "Guten Tag";
+      greeting = "Guten Tag";
     } else {
-        greeting = "Guten Abend";
+      greeting = "Guten Abend";
     }
 
-    document.getElementById('greeting').innerText = greeting;
+    document.getElementById("greeting-content").innerText = greeting;
   </script>
 </html>

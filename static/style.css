@@ -27,22 +27,55 @@ body {
 }
 
 main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: 1rem;
 
   font-family: "Fira Code", "Courier New", Courier, monospace;
+}
+
+@media (min-width: 600px) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+#greeting {
+  grid-column: 1 / -1;
 }
 
 article {
   background-color: var(--color-bg);
   color: var(--color-fg);
-  padding: 20px;
+  padding: 1.5rem;
   border: 2px solid var(--color-fg);
 }
 
-h1 {
-  font-size: 30px;
+h1, h2 {
   font-weight: bold;
   margin: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.414rem;
+}
+
+p {
+  font-size: 1.189rem;
+  margin: 0;
+  font-weight: 500;
 }
