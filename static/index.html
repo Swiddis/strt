@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>~</title>
-    <link rel="stylesheet" href="static/style.css" >
-</head>
-<body>
-    <!-- <main><p>A Truce With The Trees</p></main> -->
-</body>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1 id="greeting"></h1>
+      </article>
+    </main>
+  </body>
+
+  <script>
+    const hour = new Date().getHours();
+    
+    let greeting;
+    if (hour <= 4) {
+        greeting = "Schlafen gehen!";
+    } else if (hour <= 11) {
+        greeting = "Guten Morgen";
+    } else if (hour <= 18) {
+        greeting = "Guten Tag";
+    } else {
+        greeting = "Guten Abend";
+    }
+
+    document.getElementById('greeting').innerText = greeting;
+  </script>
 </html>
