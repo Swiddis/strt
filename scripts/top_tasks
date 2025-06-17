@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# There's probably a way to get the top 5 tasks from taskwarrior exported directly, but I couldn't find it
+top5="$(task next limit:5 | grep -P '^\s*\d+' -o | tr -d ' ' | paste -sd ',')"
+task $top5 export
