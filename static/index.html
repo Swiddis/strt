@@ -40,15 +40,28 @@
             </tr>
           `;
 
+          const priExclam = (priority) => {
+            switch (priority) {
+              case "L":
+                return "!";
+              case "M":
+                return "!!";
+              case "H":
+                return "!!!";
+              default:
+                return "";
+            }
+          };
+
           const row = (task) => `
             <tr>
               <td class="tasks-box"><input type="checkbox" /></td>
               <td class="tasks-text"><p>${
                 task.project ? "(" + task.project + ") " : ""
               }${task.description}</p></td>
-              <td class="tasks-priority"><p class="important">${
-                task.priority ? task.priority : ""
-              }</p></td>
+              <td class="tasks-priority"><p class="important">${priExclam(
+                task.priority
+              )}</p></td>
             </tr>
           `;
 
