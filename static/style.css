@@ -3,7 +3,10 @@
   --color-fg: #d4be98;
   --color-link: #7daea3;
   --color-link-hover: #e78a4e;
+  --color-important: #ea6962;
 }
+
+/* Setting the stage */
 
 html,
 body {
@@ -18,7 +21,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-image: url('berries.jpg');
+  background-image: url("berries.jpg");
   background-color: #352e26; /* Anti-flashbang */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -37,9 +40,23 @@ main {
   font-family: "Fira Code", "Courier New", Courier, monospace;
 }
 
+/* Now let's lay out all the grid elements, with different rules for different screens */
+
+#greeting {
+  grid-column: 1 / -1;
+}
+
+#tasks {
+  grid-column: 1 / -1;
+}
+
 @media (min-width: 600px) {
   main {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  #tasks {
+    grid-column: 1 / -2;
   }
 }
 
@@ -49,9 +66,7 @@ main {
   }
 }
 
-#greeting {
-  grid-column: 1 / -1;
-}
+/* Universally applicable stuff */
 
 article {
   background-color: var(--color-bg);
@@ -60,7 +75,8 @@ article {
   border: 2px solid var(--color-fg);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: bold;
   text-align: center;
   margin: 0;
@@ -81,20 +97,75 @@ p {
   font-weight: 500;
 }
 
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-
-a:link, a:visited {
+a:link,
+a:visited {
   font-size: 1.189rem;
   margin: 0;
   font-weight: 500;
-  
+
   text-decoration: none;
   color: var(--color-link);
 }
 
 a:hover {
   color: var(--color-link-hover);
+}
+
+/*
+Welcome to checkbox hell
+https://moderncss.dev/pure-css-custom-checkbox-style/ was helpful here
+*/
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: var(--color-bg);
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--color-fg);
+
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+/* Now for a bunch of random nits for different articles */
+
+.important {
+  color: var(--color-important);
+}
+
+#tasks-table {
+  width: 100%;
+}
+
+.tasks-box {
+  padding-top: 0;
+  vertical-align: text-top;
+}
+
+.tasks-priority {
+  text-align: center;
+}
+
+#bookmarks-links {
+  width: 100%;
+  table-layout: fixed;
 }

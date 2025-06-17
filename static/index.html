@@ -11,69 +11,89 @@
     <main>
       <article id="greeting">
         <h1 id="greeting-content"></h1>
+        <script>
+          const hour = new Date().getHours();
+
+          let greeting;
+          if (hour <= 4) {
+            greeting = "Schlafen gehen!";
+          } else if (hour <= 11) {
+            greeting = "Guten Morgen";
+          } else if (hour <= 18) {
+            greeting = "Guten Tag";
+          } else {
+            greeting = "Guten Abend";
+          }
+
+          document.getElementById("greeting-content").innerText = greeting;
+        </script>
       </article>
-      <!-- TODO -->
-      <!--
-        <article id="tasks">
-            <h2>Tasks</h2>
-            <table>
-                <tr>
-                    <td><input type="checkbox" name="first"></td>
-                    <td><label><p>This is a more realistic, longer task name</p></label></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="second"></td>
-                    <td><label><p>Hello!</p></label></td>
-                </tr>
-            </table>
-        </article>
-      -->
+
+      <article id="tasks">
+        <table id="tasks-table" class="tasks-checklist"></table>
+        <script>
+          const header = () => `
+            <tr>
+              <th></th>
+              <th><h2>Task</h2></th>
+              <th><h2>Pri</h2></th>
+            </tr>
+          `;
+
+          const row = (task) => `
+            <tr>
+              <td class="tasks-box"><input type="checkbox" /></td>
+              <td class="tasks-text"><p>${
+                task.project ? "(" + task.project + ") " : ""
+              }${task.description}</p></td>
+              <td class="tasks-priority"><p class="important">${
+                task.priority ? task.priority : ""
+              }</p></td>
+            </tr>
+          `;
+
+          fetch("/tasks")
+            .then((data) => data.json())
+            .then((data) => {
+              let sorted = data.sort((a, b) => b.urgency - a.urgency);
+              let content = header();
+              for (const task of sorted) {
+                content += row(task);
+              }
+              document.getElementById("tasks-table").innerHTML = content;
+            });
+        </script>
+      </article>
+
       <article id="bookmarks">
         <h2>Bookmarks</h2>
-        <table>
-            <tr>
-                <td>
-                    <a href="https://github.com/dashboard">GitHub</a>
-                </td>
-                <td>
-                    <a href="https://www.youtube.com/">Youtube</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="https://www.reddit.com/r/rpg/">rpg</a>
-                </td>
-                <td>
-                    <a href="https://itch.io/physical-games/">Itch</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="https://mail.google.com/mail/u/2/">Email</a>
-                </td>
-                <td>
-                    <a href="https://www.twitch.tv/">Twitch</a>
-                </td>
-            </tr>
+        <table id="bookmarks-links">
+          <tr>
+            <td>
+              <a href="https://github.com/dashboard">GitHub</a>
+            </td>
+            <td>
+              <a href="https://www.youtube.com/">Youtube</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.reddit.com/r/rpg/">rpg</a>
+            </td>
+            <td>
+              <a href="https://itch.io/physical-games/">Itch</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://mail.google.com/mail/u/2/">Email</a>
+            </td>
+            <td>
+              <a href="https://www.twitch.tv/">Twitch</a>
+            </td>
+          </tr>
         </table>
       </article>
     </main>
   </body>
-
-  <script>
-    const hour = new Date().getHours();
-
-    let greeting;
-    if (hour <= 4) {
-      greeting = "Schlafen gehen!";
-    } else if (hour <= 11) {
-      greeting = "Guten Morgen";
-    } else if (hour <= 18) {
-      greeting = "Guten Tag";
-    } else {
-      greeting = "Guten Abend";
-    }
-
-    document.getElementById("greeting-content").innerText = greeting;
-  </script>
 </html>
